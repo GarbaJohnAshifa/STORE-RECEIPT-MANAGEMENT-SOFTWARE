@@ -91,19 +91,19 @@ class ReceiptApp:
 
         self.receipt_text.config(state='normal')
         self.receipt_text.delete(1.0, tk.END)
-        self.receipt_text.insert(tk.END, "====================================\n")
+        self.receipt_text.insert(tk.END, "===================================================\n")
         self.receipt_text.insert(tk.END, "            Store Receipt           \n")
-        self.receipt_text.insert(tk.END, "====================================\n")
+        self.receipt_text.insert(tk.END, "===================================================\n")
         self.receipt_text.insert(tk.END, f"Cashier: {receipt.cashier_name}\n")
         self.receipt_text.insert(tk.END, f"Date: {receipt.date}\n")
-        self.receipt_text.insert(tk.END, "====================================\n")
+        self.receipt_text.insert(tk.END, "===================================================\n")
         self.receipt_text.insert(tk.END, "Item No | Name        | Unit Price | Qty | Total\n")
-        self.receipt_text.insert(tk.END, "------------------------------------\n")
+        self.receipt_text.insert(tk.END, "---------------------------------------------------\n")
         for item in receipt.items:
-            self.receipt_text.insert(tk.END, f"{item.item_no:<7} | {item.name:<10} | ${item.unit_price:<9} | {item.quantity:<3} | ${item.total_price:<5}\n")
-        self.receipt_text.insert(tk.END, "====================================\n")
-        self.receipt_text.insert(tk.END, f"Total: ${receipt.calculate_total()}\n")
-        self.receipt_text.insert(tk.END, "====================================\n")
+            self.receipt_text.insert(tk.END, f"{item.item_no:<7} | {item.name:<10} | {item.unit_price:<9} FCFA | {item.quantity:<3} | {item.total_price:<5} FCFA\n")
+        self.receipt_text.insert(tk.END, "===================================================\n")
+        self.receipt_text.insert(tk.END, f"Total: {receipt.calculate_total()} FCFA\n")
+        self.receipt_text.insert(tk.END, "===================================================\n")
         self.receipt_text.config(state='disabled')
 
         self.save_receipt_to_file(receipt, "receipt.txt")
@@ -111,19 +111,19 @@ class ReceiptApp:
 
     def save_receipt_to_file(self, receipt, filename):
         with open(filename, "w") as file:
-            file.write("====================================\n")
+            file.write("===================================================\n")
             file.write("            Store Receipt           \n")
-            file.write("====================================\n")
+            file.write("===================================================\n")
             file.write(f"Cashier: {receipt.cashier_name}\n")
             file.write(f"Date: {receipt.date}\n")
-            file.write("====================================\n")
+            file.write("===================================================\n")
             file.write("Item No | Name        | Unit Price | Qty | Total\n")
-            file.write("------------------------------------\n")
+            file.write("---------------------------------------------------\n")
             for item in receipt.items:
-                file.write(f"{item.item_no:<7} | {item.name:<10} | ${item.unit_price:<9} | {item.quantity:<3} | {item.total_price:<5}\n")
-            file.write("====================================\n")
-            file.write(f"Total: ${receipt.calculate_total()}\n")
-            file.write("====================================\n")
+                file.write(f"{item.item_no:<7} | {item.name:<10} | {item.unit_price:<9} FCFA | {item.quantity:<3} | {item.total_price:<5}\n")
+            file.write("===================================================\n")
+            file.write(f"Total: {receipt.calculate_total()} FCFA\n")
+            file.write("===================================================\n")
 
 if __name__ == "__main__":
     root = tk.Tk()
